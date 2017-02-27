@@ -17,9 +17,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+let v1 = express.Router();
+v1.use('/index', new IndexResouce().router);
 
-
-app.use('/v1/index', new IndexResouce().router);
+app.use('/v1', v1);
 
 //Connecting to Mongo 
 require('./data/mongo');
